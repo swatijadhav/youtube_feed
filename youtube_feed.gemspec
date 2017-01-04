@@ -6,18 +6,18 @@ require 'youtube_feed/version'
 Gem::Specification.new do |spec|
   spec.name          = "youtube_feed"
   spec.version       = YoutubeFeed::VERSION
-  spec.authors       = ["swati jadhav"]
-  spec.email         = ["swati.nakshtra17@gmail.com"]
+  spec.authors       = ["Swati Jadhav"]
+  spec.email         = "swati.nakshtra17@gmail.com"
 
-  spec.summary       = %q{Fetch youtube feeds in standard RSS format.}
-  spec.description   = %q{Fetch youtube feeds in standard RSS format.}
-  spec.homepage      = ""
+  spec.summary       = "Fetch youtube feeds in standard RSS format."
+  spec.description   = "Fetch youtube feeds in standard RSS format."
+  # spec.homepage      = ""
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
   # to allow pushing to a single host or delete this section to allow pushing to any host.
   if spec.respond_to?(:metadata)
-    spec.metadata['allowed_push_host'] = ""
+    spec.metadata['allowed_push_host'] = "https://rubygems.org"
   else
     raise "RubyGems 2.0 or newer is required to protect against " \
       "public gem pushes."
