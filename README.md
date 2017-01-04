@@ -1,8 +1,8 @@
 # YoutubeFeed
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/youtube_feed`. To experiment with that code, run `bin/console` for an interactive prompt.
+Youtube RSS feed is customized with their own elements(prefixed with 'yt-').
 
-TODO: Delete this and the text above, and describe your gem
+This gem will parse youtube rss feed url and fetch feeds in standard rss format.
 
 ## Installation
 
@@ -24,19 +24,36 @@ Or install it yourself as:
 
     # any youtube playlist rss url / user videos rss url / channel videos rss url
     # url = https://www.youtube.com/feeds/videos.xml?playlist_id=PLwj9AQsvgODeGN2ZFEKQq15kDXwz8bnll
-    feed = Parser::ParseContent.new(url).execute
-    puts feed.entries.map &:inspect
+    
+    feed = YoutubeFeed::Parser.new(url).fetch_and_parse
+    
+    feed.entries # returns an array of Entry objects
+    # => [<YoutubeFeed::AtomEntry ...>, <YoutubeFeed::AtomEntry ...>, ...]
+    
+    
+These entry objects contain the data parsed from the feed XML:
 
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/youtube_feed. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
-
+        entry = feed.entries.first
+        entry.link
+        # => "http://www.youtube.com/watch?v=Lip-XpO3WIA"
+        entry.title
+        # => "Announcing verison 1.0"
+        entry.description
+        # => "Amazon Go will prompt retailers to rethink the checkout experience,...."
+        entry.author
+        # => "L2inc"
+        entry.thumbnail
+        # => "https://i1.ytimg.com/vi/Lip-XpO3WIA/hqdefault.jpg"
+        entry.entry_id
+        # => "Lip-XpO3WIA"
+        entry.channel_id
+        # => "UCBcRF18a7Qf58cCRy5xuWwQ"
+        entry.published_at
+        # => "2016-12-30T19:49:45+00:00"
+        entry.star_rating
+        # => "4.96"
+        entry.views_count
+        # => "64885"
 
 ## License
 

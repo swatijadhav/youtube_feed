@@ -1,24 +1,22 @@
-require 'pry'
 require 'uri'
 require 'faraday'
 require 'nokogiri'
 require 'open-uri'
 require 'sax-machine'
 
-module Parser
+module YoutubeFeed
 
-  class ParseContent
+  class Parser
 
     attr_accessor :youtube_feed_url
 
     def initialize(youtube_feed_url)
-      @youtube_feed_url = youtube_feed_url || 'https://www.youtube.com/feeds/videos.xml?channel_id=UCBcRF18a7Qf58cCRy5xuWwQ'
+      @youtube_feed_url = youtube_feed_url
     end
 
-    def execute
-      binding.pry
+    def fetch_and_parse
       response = Faraday.new(@youtube_feed_url).get
-      Parser::Atom.parse(response.body)
+      YoutubeFeed::Atom.parse(response.body)
     end
   end
 
@@ -48,7 +46,3 @@ module Parser
   end
 
 end
-
-# url = "https://www.youtube.com/feeds/videos.xml?playlist_id=PLwj9AQsvgODeGN2ZFEKQq15kDXwz8bnll"
-# feed = Parser::ParseContent.new(url).execute
-# puts feed.entries.map &:inspect

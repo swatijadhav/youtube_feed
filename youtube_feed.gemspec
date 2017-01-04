@@ -34,7 +34,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "minitest", "~> 5.0"
 
-  spec.add_development_dependency "pry", "~> 0.10.1"
   spec.add_development_dependency "nokogiri", "~> 1.7.0"
   spec.add_development_dependency "sax-machine", "~> 1.3.2"
   spec.add_development_dependency "faraday", "~> 0.10.1"
